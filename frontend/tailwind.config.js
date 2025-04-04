@@ -5,7 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",  /* make sure there is no space in here {js,ts,jsx,tsx}*/
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors:{
+        'primary':'#5f6FFF'
+      }
+    },
   },
   plugins: [],
 }
