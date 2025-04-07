@@ -11,11 +11,11 @@ const MyProfile = () => {
       Line1: '57th Cross',
       Line2: 'Circle, church round'
     },
-    gender: 'mail',
+    gender: 'Male',
     dob: '2004-7-31'
   })
 
-  const [isEdit, setIsEdit] = useState(false)
+  const [isEdit, setIsEdit] = useState(true)
 
   return (
     <div>
@@ -43,14 +43,31 @@ const MyProfile = () => {
           {
             isEdit
             ? <p>
-              <input type="text" />
+              <input onChange={(e) => setUserData(prev => ({...prev, address: {...prev.address, Line1: e.target.value}}))} value={userData.address.Line1} type="text" />
               <br />
-              <input type="text" /> 
+              <input onChange={(e) => setUserData(prev => ({...prev, address: {...prev.address, Line2: e.target.value}}))} value={userData.address.Line2} type="text" /> 
             </p> 
             : <p>
-              
+              {userData.address.Line1}
+              <br />
+              {userData.address.Line2}
             </p>
           }
+        </div>
+      </div>
+      <div>
+        <p>BASIC INFORMATION</p>
+        <div>
+          <p>Gender:</p>
+          {
+            isEdit 
+            ? <select onChange={(e) => setUserData(prev => ({...prev, gender: e.target.value}))} value={userData.gender}>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+            : <p>{userData.gender}</p>
+          }
+          
         </div>
       </div>
     </div>
