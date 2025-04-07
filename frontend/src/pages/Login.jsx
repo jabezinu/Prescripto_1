@@ -58,7 +58,7 @@ const Login = () => {
         </button>
         {state === "Sign Up" ? (
           <p>
-            Alreaddy have an account?{" "}
+            Already have an account?{" "}
             <span
               onClick={() => setState("Login")}
               className="text-primary underline cursor-pointer"
@@ -68,7 +68,7 @@ const Login = () => {
           </p>
         ) : (
           <p>
-            Create an new account!{" "}
+            Create a new account!{" "}
             <span
               onClick={() => setState("Sign Up")}
               className="text-primary underline cursor-pointer"
