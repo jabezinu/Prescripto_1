@@ -15,7 +15,7 @@ const MyProfile = () => {
     dob: '2004-7-31'
   })
 
-  const [isEdit, setIsEdit] = useState(true)
+  const [isEdit, setIsEdit] = useState(false)
 
   return (
     <div>
@@ -67,8 +67,23 @@ const MyProfile = () => {
             </select>
             : <p>{userData.gender}</p>
           }
-          
+
+          <p>Birthday:</p>
+          {
+            isEdit
+            ? <input type="date" onChange={(e) => setUserData(prev => ({...prev, dob: e.target.vlaue}))} vlaue= {userData.dob} />
+            : <p>{userData.dob}</p>
+          }
         </div>
+      </div>
+
+      <div>
+        {
+          isEdit
+          ? <button onClick={() => setIsEdit(false)}>Save information</button>
+          : <button  onClick={() => setIsEdit(true)}>Edit</button>
+          
+        }
       </div>
     </div>
   )
