@@ -2,7 +2,7 @@
 export default {
   content: [
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}" /* make sure there is no space in here {js,ts,jsx,tsx}*/,
+    "./src/**/*.{js,ts,jsx,tsx}", /* make sure there is no space in here {js,ts,jsx,tsx}*/,
   ],
   theme: {
     extend: {},
