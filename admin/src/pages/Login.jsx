@@ -21,7 +21,7 @@ const Login = () => {
           password,
         });
         if (data.success) {
-          localStorage.setItem("aToken", data.accessToken);
+          localStorage.setItem("aToken", data.accessToken)
           console.log(data.accessToken);
         }else{
           toast.error(data.message)
