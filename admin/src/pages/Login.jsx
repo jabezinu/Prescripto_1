@@ -21,10 +21,10 @@ const Login = () => {
           password,
         });
         if (data.success) {
-          localStorage.setItem("aToken", data.accessToken)
-          console.log(data.accessToken);
-        }else{
-          toast.error(data.message)
+          localStorage.setItem("aToken", data.accessToken);
+          setAToken(data.accessToken);
+        } else {
+          toast.error(data.message);
         }
       } else {
       }
