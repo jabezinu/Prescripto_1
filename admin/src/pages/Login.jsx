@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { assets } from "../assets/assets";
 import { AdminContext } from "../context/AdminContex";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [state, setState] = useState("Admin");
@@ -20,7 +21,10 @@ const Login = () => {
           password,
         });
         if (data.success) {
+          localStorage.setItem("aToken", data.accessToken);
           console.log(data.accessToken);
+        }else{
+          toast.error(data.message)
         }
       } else {
       }
