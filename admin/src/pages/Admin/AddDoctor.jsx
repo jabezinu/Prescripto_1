@@ -1,9 +1,9 @@
-import React from 'react'
-import { assets } from '../../assets/assets'
+import React from "react";
+import { assets } from "../../assets/assets";
 
 const AddDoctor = () => {
   return (
-    <form> 
+    <form>
       <p>Add Doctor</p>
 
       <div>
@@ -11,24 +11,26 @@ const AddDoctor = () => {
           <label htmlFor="doc-img">
             <img src={assets.upload_area} alt="" />
           </label>
-            <input type="file" id='doc-img' hidden/>
-            <p>Upload Doctor <br /> pictur</p>
+          <input type="file" id="doc-img" hidden />
+          <p>
+            Upload Doctor <br /> pictur
+          </p>
         </div>
 
         <div>
-      {/* --------------Right Side-------------- */}
+          {/* --------------Right Side-------------- */}
           <div>
             <div>
               <p>Doctor name</p>
-              <input type="text" placeholder='Name' required/>
+              <input type="text" placeholder="Name" required />
             </div>
             <div>
               <p>Doctor Email</p>
-              <input type="email" placeholder='Email' required/>
+              <input type="email" placeholder="Email" required />
             </div>
             <div>
               <p>Doctor Password</p>
-              <input type="password" placeholder='Password' required/>
+              <input type="password" placeholder="Password" required />
             </div>
             <div>
               <p>Experience</p>
@@ -47,9 +49,8 @@ const AddDoctor = () => {
             </div>
             <div>
               <p>Fees</p>
-              <input type="number" placeholder='Your Fees' required/>
+              <input type="number" placeholder="Your Fees" required />
             </div>
-
           </div>
           {/* --------------Right Side-------------- */}
           <div>
@@ -64,11 +65,25 @@ const AddDoctor = () => {
                 <option value="Gastroenterologist">Gastroenterologist</option>
               </select>
             </div>
+            <div>
+              <p>Education</p>
+              <input type="text" placeholder="Eduction" required />
+            </div>
+            <div>
+              <p>Address</p>
+              <input type="text" placeholder="Address1" required />
+              <input type="text" placeholder="Address2" required />
+            </div>
+            <div>
+              <p>About</p>
+              <textarea placeholder="Write about doctor" rows={4}></textarea>
+            </div>
+            <button>Add doctor</button>
           </div>
         </div>
       </div>
     </form>
-  )
-}
+  );
+};
 
-export default AddDoctor
+export default AddDoctor;
