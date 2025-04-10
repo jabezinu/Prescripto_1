@@ -1,20 +1,31 @@
-import React, { useContext, useEffect } from 'react'
-import { AdminContext } from '../../context/AdminContex'
+import React, { useContext, useEffect } from "react";
+import { AdminContext } from "../../context/AdminContex";
 
 const DoctorsList = () => {
-
-  const {doctors, aToken, getAllDoctors} = useContext(AdminContext)
+  const { doctors, aToken, getAllDoctors } = useContext(AdminContext);
 
   useEffect(() => {
     if (aToken) {
-      getAllDoctors()
+      getAllDoctors();
     }
-  },[aToken])
+  }, [aToken]);
   return (
     <div>
-        
+      <h1>All Doctors</h1>
+      <div>
+        {
+          doctors.map((item, index) => (
+            <div key={index}>
+              <img src={item.image} alt="" />
+              <div>
+                
+              </div>
+            </div>
+          ))
+        }
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default DoctorsList
+export default DoctorsList;
