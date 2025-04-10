@@ -70,4 +70,14 @@ const loginUser = async (req, res) => {
   }
 };
 
+// API to get user profile data
+const getProfile = async(req, res) => {
+  try {
+    const {userId} = req.body;
+    const user = await userModel.findById({userId: user._id})
+  } catch (error) {
+    
+  }
+}
+
 export { registerUser, loginUser };
