@@ -57,12 +57,12 @@ const AddDoctor = () => {
         toast.success(data.message);
         setDocImg(false);
         setName("");
-        // setPassword('')
-        // setEmail('')
-        // setAddress1('')
-        // setAddress2('')
-        // setDegree('')
-        // setAbout('')
+        setPassword('')
+        setEmail('')
+        setAddress1('')
+        setAddress2('')
+        setDegree('')
+        setAbout('')
         setFees("");
       } else {
         toast.error(data.message);
