@@ -58,7 +58,8 @@ const loginUser = async (req, res) => {
       return res.json({ success: false, message: "user doesn't exist" });
     }
 
-    if (user && (await bcrypt.compare(password, user.password))) {
+    const isMatch = await bcrypt.compare(password, user.password)
+    if (isMatch) {
       const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
       return res.json({ success: true, token });
     } else {
@@ -103,7 +104,7 @@ const updateProfile = async (req, res) => {
 
       await userModel.findByIdAndUpdate(userId, {image: imageURL})
     }
-
+ 
     res.json({success: true, message: 'Profile updated!'})
 
   } catch (error) {
