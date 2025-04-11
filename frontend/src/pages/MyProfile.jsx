@@ -53,29 +53,21 @@ const MyProfile = () => {
           ? <label htmlFor="image">
               <div className="inline-block relateive cursor-pointer">
                 <img className="w-36 rounded opacity-75" src={image ? URL.createObjectURL(image) : userData.image} alt="" />
-                <img className="w-10 absolute bottom-12 right-12" src={image ? "" : assets.upload_icon} alt="" />
+                <img className="w-10 absolute bottom-12 right-12" src={image ? '' : assets.upload_icon} alt="" />
               </div>
               <input onChange={(e) => setImage(e.target.files[0])} type="file" id="image" hidden />
             </label>
           : <img className="w-36 rounded" src={userData.image} alt="" />
         }
 
-        {isEdit ? (
-          <input
-            className="bg-gray-50 text-3xl font-medium max-w-60 mt-4"
-            type="text"
-            value={userData.name}
-            onChange={(e) =>
-              setUserData((prev) => ({ ...prev, name: e.target.value }))
-            }
-          />
-        ) : (
-          <p className="font-medium text-3xl text-neutral-800 mt-4">
-            {userData.name}
-          </p>
-        )}
+        {
+          isEdit
+          ? <input
+            className="bg-gray-50 text-3xl font-medium max-w-60 mt-4" type="text" value={userData.name} onChange={(e) => setUserData((prev) => ({ ...prev, name: e.target.value }))}/>
+          : <p className="font-medium text-3xl text-neutral-800 mt-4">{userData.name}</p>
+        }
 
-        <hr className="bg-zinc-400 h-[-1px] border-none" />
+        <hr className="bg-zinc-400 h-[1px] border-none" />
         <div>
           <p className="text-neutral-500 underline mt-3">CONTACT INFORMATION</p>
           <div className="grid grid-cols-[1fr_3fr] gap-y-2.5 mt-3 text-neutral-700">
@@ -97,29 +89,9 @@ const MyProfile = () => {
             <p className="font-medium">Address:</p>
             {isEdit ? (
               <p>
-                <input
-                  className="bg-gray-50"
-                  onChange={(e) =>
-                    setUserData((prev) => ({
-                      ...prev,
-                      address: { ...prev.address, Line1: e.target.value },
-                    }))
-                  }
-                  value={userData.address.Line1}
-                  type="text"
-                />
+                <input className="bg-gray-50"onChange={(e) => setUserData((prev) => ({ ...prev, address: { ...prev.address, Line1: e.target.value }, }))}value={userData.address.Line1} type="text"/>
                 <br />
-                <input
-                  className="bg-gray-50"
-                  onChange={(e) =>
-                    setUserData((prev) => ({
-                      ...prev,
-                      address: { ...prev.address, Line2: e.target.value },
-                    }))
-                  }
-                  value={userData.address.Line2}
-                  type="text"
-                />
+                <input className="bg-gray-50" onChange={(e) => setUserData((prev) => ({...prev, address: { ...prev.address, Line2: e.target.value }, }))}value={userData.address.Line2}type="text"/>
               </p>
             ) : (
               <p className="text-gray-500">
