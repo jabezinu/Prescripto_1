@@ -27,11 +27,7 @@ const AppContextProvider = (props) => {
 
   const loadUserProfileData = async () => {
     try {
-      const { data } = await axios.get(backendUrl + "/api/user/get-profile", {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
+      const { data } = await axios.get(backendUrl + "/api/user/get-profile", {headers: {token}});
       if (data.success) {
         setUserData(data.userData);
       } else {
@@ -51,7 +47,7 @@ const AppContextProvider = (props) => {
     backendUrl,
     userData, 
     setUserData,
-    loadUserProfileData,
+    loadUserProfileData
   };
 
   useEffect(() => {
