@@ -4,6 +4,7 @@ import { AppContext } from "../context/AppContext";
 import { assets } from "../assets/assets";
 import RelatedDoctors from "../components/RelatedDoctors";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 const Appointment = () => {
   const { docId } = useParams();
@@ -21,6 +22,7 @@ const Appointment = () => {
     const docInfo = doctors.find((doc) => doc._id == docId);
     setDocInfo(docInfo);
   };
+
 
   const getAvailableSlots = async () => {
     setDocSlots([]);
@@ -75,6 +77,32 @@ const Appointment = () => {
     if(!token){
       toast.warn('Login to book appointment.')
       return navigate('/login')
+    }
+    try {
+      
+      const date = docSlots[slotIndex][0].datetime
+
+      let day = date.getDate()
+      let month = date.getMonth() + 1
+      let year = date.getFullYear()
+
+      const slotDate = day + '_' + month + '_' + year;
+      
+      console.log(slotDate)        
+      const {data} = await axios.post(backendUrl + '/api/user/book-appointment', {docId,slotDate,slotTime}, {headers: {token}})
+      if(data.success){
+        toast.success(data.message)
+        getDoctorsData()
+        navigate('/my-appointments')
+
+      }else{
+        toast.error(data.message)
+      }
+
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message)
+      
     }
   }
 
