@@ -172,6 +172,14 @@ const bookAppointment = async (req, res) => {
 }
 
 // API to get user appointments for fronted my-appointments page
+const listAppointment = async (async, res) => {
 
+  try {
+    
+  } catch (error) {
+    console.log(error);
+    res.json({success: false, message: error.message})
+  }
+}
 
 export { registerUser, loginUser, getProfile, updateProfile, bookAppointment };
