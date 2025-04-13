@@ -8,6 +8,7 @@ const MyAppointments = () => {
   const {backendUrl, token} = useContext(AppContext)
 
   const [appointments, setAppointments] = useState([])
+  const 
 
   const getUserAppointment = async () => {
     try {
