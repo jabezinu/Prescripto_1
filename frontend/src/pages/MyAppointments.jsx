@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import {AppContext} from '../context/AppContext'
 import axios from 'axios'
 import { toast } from 'react-toastify'
@@ -12,7 +12,7 @@ const MyAppointments = () => {
   const getUserAppointment = async () => {
     try {
 
-      const {data} = await axios.get(backendUrl, '/api/user/appointments', {headers: {token}})
+      const {data} = await axios.get(backendUrl+ '/api/user/appointments', {headers: {token}})
 
       if(data.success){
         setAppointments(data.appointments.reverse())
@@ -26,11 +26,11 @@ const MyAppointments = () => {
     }
   }
 
-  useEffect({
-    if(token) {
+  useEffect(() => {
+    if(token){
       getUserAppointment()
     }
-  },[token])
+  }, [token])
 
   return (
     <div>
@@ -39,16 +39,16 @@ const MyAppointments = () => {
         {appointments.map((items, index) => (
           <div className='grid grid-cols-[1fr_2fr] gap-4 sm:flex sm:gap-6 py-2 border-b' key = {index}>
             <div>
-              <img className='w-32 bg-indigo-50' src={items.image} alt="" />
+              <img className='w-32 bg-indigo-50' src={items.docData.image} alt="" />
             </div>
 
             <div className='flex-1 text-sm text-zinc-600'>
-              <p className='text-neutral-800 font-semibold'>{items.name}</p>
-              <p >{items.speciality}</p>
+              <p className='text-neutral-800 font-semibold'>{items.docData.name}</p>
+              <p >{items.docData.speciality}</p>
               <p className='text-zinc-700 font-medium mt-1'>Address:</p>
-              <p className='text-xs'>{items.address.line1}</p>
-              <p className='text-xs'>{items.address.line2}</p>
-              <p className='text-xs mt-1'><span className='text-sm text-neutral-700 font-medium'>Date & Time: 25, July, 2024 | 8:30 PM </span></p>
+              <p className='text-xs'>{items.docData.address.line1}</p>
+              <p className='text-xs'>{items.docData.address.line2}</p>
+              <p className='text-xs mt-1'><span className='text-sm text-neutral-700 font-medium'>Date & Time:</span>{items.slotDate} | {items.slotTime}</p>
             </div>
             <div></div>
             <div className='flex flex-col gap-2 justify-end'>
