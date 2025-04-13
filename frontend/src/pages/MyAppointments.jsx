@@ -8,7 +8,8 @@ const MyAppointments = () => {
   const {backendUrl, token} = useContext(AppContext)
 
   const [appointments, setAppointments] = useState([])
-  const 
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  const Day
 
   const getUserAppointment = async () => {
     try {
