@@ -16,6 +16,19 @@ const MyAppointments = () => {
     
   }
 
+  const cancelAppointment = async () => {
+
+    try {
+      const {data} = await axios.get(backendUrl+ '/api/user/appointments', {headers: {token}});
+      
+      
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message)
+    }
+
+  }
+
   const getUserAppointment = async () => {
     try {
 
