@@ -11,6 +11,8 @@ const MyAppointments = () => {
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
   
   const slotDateFormat = (slotDate) => {
+    const dateArray = slotDate.split('_')
+    return dateArray[0] + " " + months[Number(dateArray[1]) - 1] + " "+ dateArray[2]
     
   }
 
@@ -36,6 +38,7 @@ const MyAppointments = () => {
       getUserAppointment()
     }
   }, [token])
+  
 
   return (
     <div>
@@ -53,7 +56,7 @@ const MyAppointments = () => {
               <p className='text-zinc-700 font-medium mt-1'>Address:</p>
               <p className='text-xs'>{items.docData.address.line1}</p>
               <p className='text-xs'>{items.docData.address.line2}</p>
-              <p className='text-xs mt-1'><span className='text-sm text-neutral-700 font-medium'>Date & Time:</span>{items.slotDate} | {items.slotTime}</p>
+              <p className='text-xs mt-1'><span className='text-sm text-neutral-700 font-medium'>Date & Time:</span>{slotDateFormat(items.slotDate)} | {items.slotTime}</p>
             </div>
             <div></div>
             <div className='flex flex-col gap-2 justify-end'>
