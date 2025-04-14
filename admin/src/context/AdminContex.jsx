@@ -47,7 +47,7 @@ const AdminContextProvider = (props) => {
     
     try {
       
-      const { data } = await axios.post(backendUrl + "/api/admin/add-doctor",{ headers: { atoken: aToken } });
+      const { data } = await axios.get(backendUrl + "/api/admin/appointments", {headers: {atoken: aToken}});
       if(data.success){
         setAppointments(data.appointments);
         console.log(data.appointments);
