@@ -135,4 +135,6 @@ const appointmentsAdmin = async (req, res) => {
   }
 }
 
+
+
 export { addDoctor, loginAdmin, allDoctors, appointmentsAdmin };
