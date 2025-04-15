@@ -71,4 +71,91 @@ const appointmentsDoctor = async (req, res) => {
   }
 }
 
-export { changeAvailablity, doctorList, loginDoctor, appointmentsDoctor };
+// API to mark appointment completed for doctor panel
+const appointmentComplete = async (req, res) => {
+  try {
+
+    const {docId, appointmentId} = req.body;
+
+    const appointmentData = await appointmentModel.findById(appointmentId)
+
+    if(appointmentData && appointmentData.docId === docId){
+      await appointmentModel.findByIdAndUpdate(appointmentId, {isCompleted: true})
+      return res.json({success: true, message: 'Appointment Completed'})
+    }else{
+      return res.json({success: false, message: 'mark faild'})
+      
+      
+    }
+    
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+    
+  }
+}
+// API to cancel appointment for doctor panel
+const appointmentCancel = async (req, res) => {
+  try {
+
+    const {docId, appointmentId} = req.body;
+
+    const appointmentData = await appointmentModel.findById(appointmentId)
+
+    if(appointmentData && appointmentData.docId === docId){
+      await appointmentModel.findByIdAndUpdate(appointmentId, {cancelled: true})
+      return res.json({success: true, message: 'Cancelation Completed'})
+    }else{
+      return res.json({success: false, message: 'Cancelation faild'})
+      
+      
+    }
+    
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+    
+  }
+}
+
+// API to get dashboard data for doctor panel
+const doctorDashboard = async (req, res) => {
+  try {
+
+    const {docId} = req.body;
+
+    const appointments = await appointmentModel.find({docId})
+
+    let earnings = 0
+
+    appointments.map((item) => {
+      if(item.isCompleted || item.payment){
+        earnings += item.amount
+      }
+    })
+
+    let patients = []
+
+    appointments.map((item) =>{
+      if(patients.includes(DataTransferItemList.userId)){
+        patients.push(item.userId)
+      }
+    })
+
+    const dashData = {
+      earnings, 
+      appointments: appointments.length,
+      patients: patients.length,
+      latestAppointments: appointments.reverse().slice(0, 5)
+    }
+
+    
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+    
+  }
+  res.json({success: true, dashData})
+}
+
+export { changeAvailablity, doctorList, loginDoctor, appointmentsDoctor, appointmentComplete, appointmentCancel, doctorDashboard };
