@@ -124,7 +124,7 @@ const doctorDashboard = async (req, res) => {
 
     const {docId} = req.body;
 
-    const appointments = await appointmentModel.find({docId})
+    const appointments = await appointmentModel.find({docId, cancelled: false})
 
     let earnings = 0
 
