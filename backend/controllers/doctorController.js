@@ -137,7 +137,7 @@ const doctorDashboard = async (req, res) => {
     let patients = []
 
     appointments.map((item) =>{
-      if(patients.includes(DataTransferItemList.userId)){
+      if(!patients.includes(item.userId)){
         patients.push(item.userId)
       }
     })
@@ -149,6 +149,7 @@ const doctorDashboard = async (req, res) => {
       latestAppointments: appointments.reverse().slice(0, 5)
     }
 
+    res.json({success: true, dashData})
     
   } catch (error) {
     console.log(error);
